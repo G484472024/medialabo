@@ -3,25 +3,33 @@ p {
 }
 
 p.info {
-	font-size: 10pt;
+	font-size: small;
+	background-color: #dfdfdf;
 }
 
 h1 {
-	background-color: #7f7fcf;
+	color : white;
+	text-shadow: 0px 0px 10px navy;
 }
 
 h2 {
-	border: solid 1px black;
+	font-family: cursive;
+	color: #3f3faf;
+	background: linear-gradient(90deg, #ffffff, #ffefaf);
 	margin: 5px;
 }
 
 div#zentai {
-	display: flex;
-	flex-direction: row;
-	width: 1024px;
+	display: grid;  /*グリッドレイアウトにする*/
+	grid-template-columns: 1fr 1fr;/*2列、幅は1:1*/
+	grid-auto-rows: 200px;/*高さ*/
+	grid-gap: 10px;/*隣り合うブロックとの間隔*/
 }
 
 div#zentai > div {
-	margin-left: 5px;
+	padding: 5px;
 	background-color: #ffefaf;
+}
+img{
+	float: right;
 }
