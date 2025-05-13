@@ -3,7 +3,7 @@ function print(data) {
   for(let g1 of data.list.g1){
     console.log(g1.start_time);
     console.log(g1.end_time);
-    console.log(g1.)
+    console.log(g1.name);
   }
 
 }
