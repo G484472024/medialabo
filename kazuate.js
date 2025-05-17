@@ -23,7 +23,10 @@ function hantei() {
   y.textContent = kaisu;
 
   let z = document.querySelector('span#answer');
-  z = yoso;
+  z.textContent = yoso;
+
+  let a = document.querySelector('p#result');
+  
   
   // 課題3-1: 正解判定する
   // kotae と yoso が一致するかどうか調べて結果を出力
@@ -32,16 +35,22 @@ function hantei() {
   if(kaisu < 3){
     if(yoso===kotae){
         console.log('正解です。おめでとう！')
+        a.textContent = '正解です。おめでとう！'
       }else if(yoso<kotae){
         console.log('まちがい。答えはもっと大きいですよ')
+        a.textContent = 'まちがい。答えはもっと大きいですよ'
     }else if(yoso>kotae){
         console.log('まちがい。答えはもっと小さいですよ')
+        a.textContent = 'まちがい。答えはもっと小さいですよ'
     }else{
         console.log('これが表示されていたら条件分岐ミス')
+        a.textContent = 'これが表示されていたら条件分岐ミス'
     }
   }else if(kaisu === 3){
     console.log('間違い。残念でした答えは'+kotae+'です。')
+    a.textContent = '間違い。残念でした答えは'+kotae+'です。'
   }else{
     console.log('答えは'+kotae+'でした。すでにゲームは終わっています')
+    a.textContent = '答えは'+kotae+'でした。すでにゲームは終わっています'
   }
 }
