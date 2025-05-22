@@ -1,9 +1,10 @@
 // 課題3-2 のプログラムはこの関数の中に記述すること
 function print(data) {
   for(let g1 of data.list.g1){
-    console.log(g1.start_time);
-    console.log(g1.end_time);
-    console.log(g1.name);
+    console.log('開始時刻：'+g1.start_time);
+    console.log('終了時刻：'+g1.end_time);
+    console.log('タイトル：'+g1.title);
+    console.log('サブタイトル：'+g1.subtitle);
   }
 
 }
