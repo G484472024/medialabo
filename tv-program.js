@@ -1,16 +1,16 @@
-// // 課題4-2
-// let b = document.querySelector('button#btn');
-// b.addEventListener('click', print);
 
-// function channelSelect(){
-//   let s = document.querySelector('select#channel');
-//   let idx = s.selectedIndex;
+//ここに4-2を作る
 
-//   let os = s.querySelectorAll('option');
-//   let o = os.item(idx);
+function channelIn(){
+  let select_channel = document.querySelector("select[name=channel]");
+  console.log("選ばれたチャンネル:", select_channel.value);
+}
 
-//   console.log(idx);
-// }
+function genreIn(){
+  let select_genre = document.querySelector("select[name=genre]");
+  console.log("選ばれたジャンル:", select_genre.value);
+}
+//ここのコメント消すと動かない。なぜ、、？
 
 
 // 課題3-2 のプログラムはこの関数の中に記述すること
@@ -27,28 +27,142 @@ function print(data) {
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
+let count = 0;
 function printDom(data) {
 
+
+  count = count+1;
+  
+  let h = document.querySelector('button#btn');//ボタンの後ろを指定
+  let d = document.createElement('div');//div#resultを作成したいけどresultタグの付け方がわからない
+  h.insertAdjacentElement('afterend', d);  // ボタンの後ろに配置
+
+
+  let h2 = document.createElement('h2');
+  h2.textContent = '検索結果'+count+'件目';
+  d.insertAdjacentElement('afterbegin', h2 );
+
+  
+
+  //memoここまであってる
+
+  let table = document.createElement('table');//table作成
+  d.insertAdjacentElement('afterbegin',table);//table配置
+
+  let tbody = document.createElement('tbody');//tbody
+  table.insertAdjacentElement('afterbegin',tbody);
+
+  //memoここまであってる
+
+
+  console.log(data.list);
+  for(let g1 of data.list.g1){
+
+
+    console.log('開始時刻：'+g1.start_time);
+    let p1 = document.createElement('p');
+    let timeST = document.createElement('time');
+    timeST.setAttribute('datetime', g1.start_time); 
+    //timeST.textContent = formatJSTime(data.list.g1.start_time);
+    timeST.insertAdjacentElement('afterbegin',p);
+
+
+    console.log('終了時刻：'+g1.end_time);
+    let p2 = document.createElement('p');
+    let timeED = document.createElement('time');
+    timeST.setAttribute('datetime', g1.end_time); 
+    //timeST.textContent = formatJSTime(data.list.g1.start_time);
+    timeST.insertAdjacentElement('afterbegin',p);
+
+
+    console.log('チャンネル：'+g1.service.name);
+    let trCH = document.createElement('tr');
+    let thCH = document.createElement('th');
+    thCH.textContent = 'チャンネル';
+    let tdCH = document.createElement('td');
+    tdCH.textContent = g1.service.name;
+    trCH.insertAdjacentElement('afterbegin',timeST);
+    thCH.insertAdjacentElement('afterbegin',trCH);
+    tdCH.insertAdjacentElement('afterbegin',thCH);
+
+    console.log('タイトル：'+g1.title);
+    let trTI = document.createElement('tr');
+    let thTI = document.createElement('th');
+    thCH.textContent = 'タイトル';
+    let tdTI = document.createElement('td');
+    tdTI.textContent = g1.title;
+    trTI.insertAdjacentElement('afterbegin',tdCH);
+    thTI.insertAdjacentElement('afterbegin',trTI);
+    tdTI.insertAdjacentElement('afterbegin',thTI);
+
+    console.log('サブタイトル：'+g1.subtitle);
+    let trST = document.createElement('tr');
+    let thST = document.createElement('th');
+    thCH.textContent = 'サブタイトル';
+    let tdST = document.createElement('td');
+    tdST.textContent = g1.subtitle;
+    trST.insertAdjacentElement('afterbegin',tdTI);
+    thST.insertAdjacentElement('afterbegin',trST);
+    tdST.insertAdjacentElement('afterbegin',thST);
+
+    console.log('出演者：'+g1.act);
+    let trACT = document.createElement('tr');
+    let thACT = document.createElement('th');
+    thACT.textContent = '出演者';
+    let tdACT = document.createElement('td');
+    tdACT.textContent = g1.act;
+    trACT.insertAdjacentElement('afterbegin',tdACT);
+    thACT.insertAdjacentElement('afterbegin',trACT);
+    tdACT.insertAdjacentElement('afterbegin',thACT);
+
+
+  }
+
 }
 
-// 課題5-1 のイベントハンドラの定義
-function show() {
+// 6-1 のイベントハンドラ登録処理は以下に記述
 
-}
 
-// 課題5-1, 6-1 のイベントハンドラ登録処理は以下に記述
-
+let b = document.querySelector('button#btn');
+b.addEventListener('click', channelIn);
+b.addEventListener('click', genreIn);
+b.addEventListener('click', sendRequest);
 
 
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
 
+  let x = document.querySelector('select[name=channel]');
+  let channel = x.value;
+  let y = document.querySelector('select[name=genre]');
+  let genre = y.value;
+  // URL を設定
+	let preurl = 'https://www.nishita-lab.org/web-contents/jsons/nhk/';
+
+  let channelID = channel+'-';
+  let genreID = genre+'-';
+  let omazinai = 'j.json';
+  let url = preurl+channelID+genreID+omazinai;
+
+	// 通信開始
+	axios.get(url)
+		.then(showResult)
+		.catch(showError)
+		.then(finish);
 }
 
 // 課題6-1: 通信が成功した時の処理は以下に記述
 function showResult(resp) {
+  
+    // サーバから送られてきたデータを出力
+    let data = resp.data;
 
+    // data が文字列型なら，オブジェクトに変換する
+    if (typeof data === 'string') {
+        data = JSON.parse(data);
+    }
+    printDom(data);
 }
 
 // 課題6-1: 通信エラーが発生した時の処理

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>NHKの番組表</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <link rel="stylesheet" href="project.css">
     <script src="tv-program.js" defer></script>
   </head>
@@ -11,32 +12,33 @@
 
     <h1>番組表の検索結果</h1>
     <label for="channel">チャンネル：</label>
-    <select name="channel" id="channel">
+    <select name="channel" id="channel" class="custom-select" >
         <option value="">チャンネルを選択してください</option>
-        <option value="sougou">NHK総合</option>
-        <option value="Etele">Eテレ</option>
+        <option value="g1">NHK総合</option>
+        <option value="e1">Eテレ</option>
     </select>
     <label for="genre">ジャンル：</label>
-    <select name="genre" id="genre">
+    <select name="genre" id="genre" class="custom-select">
         <option value="">ジャンルを選択してください</option>
-        <option value="news">ニュース・報道</option>
-        <option value="sports">スポーツ</option>
-        <option value="wideshow">情報・ワイドショー</option>
-        <option value="drama">ドラマ</option>
-        <option value="music">音楽</option>
-        <option value="variety">バラエティ</option>
-        <option value="movie">映画</option>
-        <option value="anime">アニメ</option>
-        <option value="doc">ドキュメンタリー・教養</option>
-        <option value="theater">劇場・公演</option>
-        <option value="edu">趣味・教育</option>
-        <option value="welfare">福祉</option>
+        <option value="0000">ニュース・報道</option>
+        <option value="0100">スポーツ</option>
+        <option value="0205">情報・ワイドショー</option>
+        <option value="0300">ドラマ</option>
+        <option value="0409">音楽</option>
+        <option value="0502">バラエティ</option>
+        <option value="0600">映画</option>
+        <option value="0700">アニメ</option>
+        <option value="0800">ドキュメンタリー・教養</option>
+        <option value="0903">劇場・公演</option>
+        <option value="1000">趣味・教育</option>
+        <option value="1100">福祉</option>
     </select>
     <button id="btn">検索</button>
 
 
 
-    <h1>検索結果1件目</h1>
+
+    <h2>検索結果1件目</h2>
     <p>開始時刻：<time datetime="2022-03-04T04:35:00">2022年3月4日04:35:00</time><br>
     終了時刻：<time datetime="2022-03-04T04:40:00">2022年3月4日04:40:00</time><br></p>
 
@@ -61,7 +63,7 @@
         </tfoot>
     </table>
 
-    <h1>検索結果2件目</h1>
+    <h2>検索結果2件目</h2>
     <p>開始時刻：<time datetime="2022-03-04T23:05:00">2022年3月4日23:05:00</time><br>
     終了時刻：<time datetime="2022-03-04T23:10:00">2022年3月4日23:10:00</time><br></p>
 
