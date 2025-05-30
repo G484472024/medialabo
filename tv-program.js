@@ -10,7 +10,6 @@ function genreIn(){
   let select_genre = document.querySelector("select[name=genre]");
   console.log("選ばれたジャンル:", select_genre.value);
 }
-//ここのコメント消すと動かない。なぜ、、？
 
 
 // 課題3-2 のプログラムはこの関数の中に記述すること
@@ -32,103 +31,276 @@ function printDom(data) {
 
   let count = 0;
   console.log(data.list);
-    for(let g1 of data.list.g1){
+
+  for(let CHid in data.list){
+    for(let id of data.list[CHid]){
 
 
-    count = count+1;
+        count = count+1;
+        
+        let div = document.querySelector('div#result');
+        // let h = document.querySelector('button#btn');//ボタンの後ろを指定
+        // let d = document.createElement('div');//div#resultを作成したいけどresultタグの付け方がわからない
+        // h.insertAdjacentElement('beforeend', d);  // ボタンの後ろに配置
+        
+
+
+        let h2 = document.createElement('h2');
+        h2.textContent = '検索結果'+count+'件目';
+        div.insertAdjacentElement('beforeend',h2);
+        console.log(h2);
+
+
+        let pST = document.createElement('p');
+        pST.textContent = '開始時刻：'+id.start_time;
+        h2.insertAdjacentElement('afterend',pST);
+        
+        let pED = document.createElement('p');
+        pED.textContent = '終了時刻：'+id.end_time;
+        pST.insertAdjacentElement('beforeend',pED);
+
+        // console.log('開始時刻：'+id.start_time);
+        // let p1 = document.createElement('p');
+        // let timeST = document.createElement('time');
+        // timeST.setAttribute('datetime', id.start_time); 
+        // timeST.textContent = formatJSTime(id.start_time);
+        // timeST.insertAdjacentElement('beforeend',p);
+
+
+        // console.log('終了時刻：'+id.end_time);
+        // let p2 = document.createElement('p');
+        // let timeED = document.createElement('time');
+        // timeST.setAttribute('datetime', id.end_time); 
+        // timeST.textContent = formatJSTime(id.end_time);
+        // timeST.insertAdjacentElement('beforeend',p);
+
+
+        //以下表
+        let table = document.createElement('table');//table作成
+        h2.insertAdjacentElement('afterend',table);//table配置
+
+        let tbody = document.createElement('tbody');//tbody
+        table.insertAdjacentElement('beforeend',tbody);
+
+        // console.log('チャンネル：'+id.service.name);
+        let trCH = document.createElement('tr');
+        let thCH = document.createElement('th');
+        thCH.textContent = 'チャンネル';
+        let tdCH = document.createElement('td');
+        tdCH.textContent = id.service.name;
+        tbody.insertAdjacentElement('beforeend',trCH);
+        trCH.insertAdjacentElement('beforeend',thCH);
+        trCH.insertAdjacentElement('beforeend',tdCH);
+
+        // console.log('タイトル：'+id.title);
+        let trTI = document.createElement('tr');
+        let thTI = document.createElement('th');
+        thTI.textContent = 'タイトル';
+        let tdTI = document.createElement('td');
+        tdTI.textContent = id.title;
+        tbody.insertAdjacentElement('beforeend',trTI);
+        trTI.insertAdjacentElement('beforeend',thTI);
+        trTI.insertAdjacentElement('beforeend',tdTI);
+
+        // console.log('サブタイトル：'+id.subtitle);
+        let trST = document.createElement('tr');
+        let thST = document.createElement('th');
+        thST.textContent = 'サブタイトル';
+        let tdST = document.createElement('td');
+        tdST.textContent = id.subtitle;
+        tbody.insertAdjacentElement('beforeend',trST);
+        trST.insertAdjacentElement('beforeend',thST);
+        trST.insertAdjacentElement('beforeend',tdST);
+
+        // console.log('出演者：'+id.act);
+        let trACT = document.createElement('tr');
+        let thACT = document.createElement('th');
+        thACT.textContent = '出演者';
+        let tdACT = document.createElement('td');
+        tdACT.textContent = id.act;
+        tbody.insertAdjacentElement('beforeend',trACT);
+        trACT.insertAdjacentElement('beforeend',thACT);
+        trACT.insertAdjacentElement('beforeend',tdACT);
+
+        // let img = document.createElement('img');
+        // img.src = 'https:' + id.service.logo_m.url;
+        // img.alt = id.service.name + " ロゴ";
+        // img.style.width = id.service.logo_m.width + '10px'; // 幅指定
+        // img.style.height = id.service.logo_m.height + '5px'; // 高さ指定
+        // h2.insertAdjacentElement('afterend', img);
+        //ロゴを入れたいけどうまくいかなかった
+    }
+}
+
+  // for(let g1 of data.list.g1){
+
+
+  //   count = count+1;
     
-    let div = document.querySelector('div#result');
-    // let h = document.querySelector('button#btn');//ボタンの後ろを指定
-    // let d = document.createElement('div');//div#resultを作成したいけどresultタグの付け方がわからない
-    // h.insertAdjacentElement('beforeend', d);  // ボタンの後ろに配置
+  //   let div = document.querySelector('div#result');
+  //   // let h = document.querySelector('button#btn');//ボタンの後ろを指定
+  //   // let d = document.createElement('div');//div#resultを作成したいけどresultタグの付け方がわからない
+  //   // h.insertAdjacentElement('beforeend', d);  // ボタンの後ろに配置
     
 
 
-    let h2 = document.createElement('h2');
-    h2.textContent = '検索結果'+count+'件目';
-    div.insertAdjacentElement('beforeend',h2);
-    console.log(h2);
+  //   let h2 = document.createElement('h2');
+  //   h2.textContent = '検索結果'+count+'件目';
+  //   div.insertAdjacentElement('beforeend',h2);
+  //   console.log(h2);
 
 
-    let pST = document.createElement('p');
-    pST.textContent = '開始時刻：'+g1.start_time;
-    h2.insertAdjacentElement('afterend',pST);
+  //   let pST = document.createElement('p');
+  //   pST.textContent = '開始時刻：'+g1.start_time;
+  //   h2.insertAdjacentElement('afterend',pST);
     
-    let pED = document.createElement('p');
-    pED.textContent = '終了時刻：'+g1.end_time;
-    pST.insertAdjacentElement('beforeend',pED);
+  //   let pED = document.createElement('p');
+  //   pED.textContent = '終了時刻：'+g1.end_time;
+  //   pST.insertAdjacentElement('beforeend',pED);
 
-    // console.log('開始時刻：'+g1.start_time);
-    // let p1 = document.createElement('p');
-    // let timeST = document.createElement('time');
-    // timeST.setAttribute('datetime', g1.start_time); 
-    // timeST.textContent = formatJSTime(g1.start_time);
-    // timeST.insertAdjacentElement('beforeend',p);
-
-
-    // console.log('終了時刻：'+g1.end_time);
-    // let p2 = document.createElement('p');
-    // let timeED = document.createElement('time');
-    // timeST.setAttribute('datetime', g1.end_time); 
-    // timeST.textContent = formatJSTime(g1.end_time);
-    // timeST.insertAdjacentElement('beforeend',p);
+  //   // console.log('開始時刻：'+g1.start_time);
+  //   // let p1 = document.createElement('p');
+  //   // let timeST = document.createElement('time');
+  //   // timeST.setAttribute('datetime', g1.start_time); 
+  //   // timeST.textContent = formatJSTime(g1.start_time);
+  //   // timeST.insertAdjacentElement('beforeend',p);
 
 
-    //以下表
-    let table = document.createElement('table');//table作成
-    h2.insertAdjacentElement('afterend',table);//table配置
+  //   // console.log('終了時刻：'+g1.end_time);
+  //   // let p2 = document.createElement('p');
+  //   // let timeED = document.createElement('time');
+  //   // timeST.setAttribute('datetime', g1.end_time); 
+  //   // timeST.textContent = formatJSTime(g1.end_time);
+  //   // timeST.insertAdjacentElement('beforeend',p);
 
-    let tbody = document.createElement('tbody');//tbody
-    table.insertAdjacentElement('beforeend',tbody);
 
-    // console.log('チャンネル：'+g1.service.name);
-    let trCH = document.createElement('tr');
-    let thCH = document.createElement('th');
-    thCH.textContent = 'チャンネル';
-    let tdCH = document.createElement('td');
-    tdCH.textContent = g1.service.name;
-    tbody.insertAdjacentElement('beforeend',trCH);
-    trCH.insertAdjacentElement('beforeend',thCH);
-    trCH.insertAdjacentElement('beforeend',tdCH);
+  //   //以下表
+  //   let table = document.createElement('table');//table作成
+  //   h2.insertAdjacentElement('afterend',table);//table配置
 
-    // console.log('タイトル：'+g1.title);
-    let trTI = document.createElement('tr');
-    let thTI = document.createElement('th');
-    thTI.textContent = 'タイトル';
-    let tdTI = document.createElement('td');
-    tdTI.textContent = g1.title;
-    tbody.insertAdjacentElement('beforeend',trTI);
-    trTI.insertAdjacentElement('beforeend',thTI);
-    trTI.insertAdjacentElement('beforeend',tdTI);
+  //   let tbody = document.createElement('tbody');//tbody
+  //   table.insertAdjacentElement('beforeend',tbody);
 
-    // console.log('サブタイトル：'+g1.subtitle);
-    let trST = document.createElement('tr');
-    let thST = document.createElement('th');
-    thST.textContent = 'サブタイトル';
-    let tdST = document.createElement('td');
-    tdST.textContent = g1.subtitle;
-    tbody.insertAdjacentElement('beforeend',trST);
-    trST.insertAdjacentElement('beforeend',thST);
-    trST.insertAdjacentElement('beforeend',tdST);
+  //   // console.log('チャンネル：'+g1.service.name);
+  //   let trCH = document.createElement('tr');
+  //   let thCH = document.createElement('th');
+  //   thCH.textContent = 'チャンネル';
+  //   let tdCH = document.createElement('td');
+  //   tdCH.textContent = g1.service.name;
+  //   tbody.insertAdjacentElement('beforeend',trCH);
+  //   trCH.insertAdjacentElement('beforeend',thCH);
+  //   trCH.insertAdjacentElement('beforeend',tdCH);
 
-    // console.log('出演者：'+g1.act);
-    let trACT = document.createElement('tr');
-    let thACT = document.createElement('th');
-    thACT.textContent = '出演者';
-    let tdACT = document.createElement('td');
-    tdACT.textContent = g1.act;
-    tbody.insertAdjacentElement('beforeend',trACT);
-    trACT.insertAdjacentElement('beforeend',thACT);
-    trACT.insertAdjacentElement('beforeend',tdACT);
+  //   // console.log('タイトル：'+g1.title);
+  //   let trTI = document.createElement('tr');
+  //   let thTI = document.createElement('th');
+  //   thTI.textContent = 'タイトル';
+  //   let tdTI = document.createElement('td');
+  //   tdTI.textContent = g1.title;
+  //   tbody.insertAdjacentElement('beforeend',trTI);
+  //   trTI.insertAdjacentElement('beforeend',thTI);
+  //   trTI.insertAdjacentElement('beforeend',tdTI);
 
-    // let img = document.createElement('img');
-    // img.src = 'https:' + g1.service.logo_m.url;
-    // img.alt = g1.service.name + " ロゴ";
-    // img.style.width = g1.service.logo_m.width + '10px'; // 幅指定
-    // img.style.height = g1.service.logo_m.height + '5px'; // 高さ指定
-    // h2.insertAdjacentElement('afterend', img);
-    //ロゴを入れたいけどうまくいかなかった
-  }
+  //   // console.log('サブタイトル：'+g1.subtitle);
+  //   let trST = document.createElement('tr');
+  //   let thST = document.createElement('th');
+  //   thST.textContent = 'サブタイトル';
+  //   let tdST = document.createElement('td');
+  //   tdST.textContent = g1.subtitle;
+  //   tbody.insertAdjacentElement('beforeend',trST);
+  //   trST.insertAdjacentElement('beforeend',thST);
+  //   trST.insertAdjacentElement('beforeend',tdST);
+
+  //   // console.log('出演者：'+g1.act);
+  //   let trACT = document.createElement('tr');
+  //   let thACT = document.createElement('th');
+  //   thACT.textContent = '出演者';
+  //   let tdACT = document.createElement('td');
+  //   tdACT.textContent = g1.act;
+  //   tbody.insertAdjacentElement('beforeend',trACT);
+  //   trACT.insertAdjacentElement('beforeend',thACT);
+  //   trACT.insertAdjacentElement('beforeend',tdACT);
+
+  //   // let img = document.createElement('img');
+  //   // img.src = 'https:' + g1.service.logo_m.url;
+  //   // img.alt = g1.service.name + " ロゴ";
+  //   // img.style.width = g1.service.logo_m.width + '10px'; // 幅指定
+  //   // img.style.height = g1.service.logo_m.height + '5px'; // 高さ指定
+  //   // h2.insertAdjacentElement('afterend', img);
+  //   //ロゴを入れたいけどうまくいかなかった
+  // }
+
+  // for(let e1 of data.list.e1){
+
+
+  //   count = count+1;
+    
+  //   let div = document.querySelector('div#result');
+    
+
+
+  //   let h2 = document.createElement('h2');
+  //   h2.textContent = '検索結果'+count+'件目';
+  //   div.insertAdjacentElement('beforeend',h2);
+  //   console.log(h2);
+
+
+  //   let pST = document.createElement('p');
+  //   pST.textContent = '開始時刻：'+e1.start_time;
+  //   h2.insertAdjacentElement('afterend',pST);
+    
+  //   let pED = document.createElement('p');
+  //   pED.textContent = '終了時刻：'+e1.end_time;
+  //   pST.insertAdjacentElement('beforeend',pED);
+
+
+  //   //以下表
+  //   let table = document.createElement('table');//table作成
+  //   h2.insertAdjacentElement('afterend',table);//table配置
+
+  //   let tbody = document.createElement('tbody');//tbody
+  //   table.insertAdjacentElement('beforeend',tbody);
+
+  //   // console.log('チャンネル：'+e1.service.name);
+  //   let trCH = document.createElement('tr');
+  //   let thCH = document.createElement('th');
+  //   thCH.textContent = 'チャンネル';
+  //   let tdCH = document.createElement('td');
+  //   tdCH.textContent = e1.service.name;
+  //   tbody.insertAdjacentElement('beforeend',trCH);
+  //   trCH.insertAdjacentElement('beforeend',thCH);
+  //   trCH.insertAdjacentElement('beforeend',tdCH);
+
+  //   // console.log('タイトル：'+e1.title);
+  //   let trTI = document.createElement('tr');
+  //   let thTI = document.createElement('th');
+  //   thTI.textContent = 'タイトル';
+  //   let tdTI = document.createElement('td');
+  //   tdTI.textContent = e1.title;
+  //   tbody.insertAdjacentElement('beforeend',trTI);
+  //   trTI.insertAdjacentElement('beforeend',thTI);
+  //   trTI.insertAdjacentElement('beforeend',tdTI);
+
+  //   // console.log('サブタイトル：'+e1.subtitle);
+  //   let trST = document.createElement('tr');
+  //   let thST = document.createElement('th');
+  //   thST.textContent = 'サブタイトル';
+  //   let tdST = document.createElement('td');
+  //   tdST.textContent = e1.subtitle;
+  //   tbody.insertAdjacentElement('beforeend',trST);
+  //   trST.insertAdjacentElement('beforeend',thST);
+  //   trST.insertAdjacentElement('beforeend',tdST);
+
+  //   // console.log('出演者：'+e1.act);
+  //   let trACT = document.createElement('tr');
+  //   let thACT = document.createElement('th');
+  //   thACT.textContent = '出演者';
+  //   let tdACT = document.createElement('td');
+  //   tdACT.textContent = e1.act;
+  //   tbody.insertAdjacentElement('beforeend',trACT);
+  //   trACT.insertAdjacentElement('beforeend',thACT);
+  //   trACT.insertAdjacentElement('beforeend',tdACT);
+  // }
 
 }
 
