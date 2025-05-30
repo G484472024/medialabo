@@ -27,95 +27,107 @@ function print(data) {
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
-let count = 0;
+
 function printDom(data) {
 
-
-  count = count+1;
-  
-  let h = document.querySelector('button#btn');//ボタンの後ろを指定
-  let d = document.createElement('div');//div#resultを作成したいけどresultタグの付け方がわからない
-  h.insertAdjacentElement('afterend', d);  // ボタンの後ろに配置
-
-
-  let h2 = document.createElement('h2');
-  h2.textContent = '検索結果'+count+'件目';
-  d.insertAdjacentElement('afterbegin', h2 );
-
-  
-
-  //memoここまであってる
-
-  let table = document.createElement('table');//table作成
-  d.insertAdjacentElement('afterbegin',table);//table配置
-
-  let tbody = document.createElement('tbody');//tbody
-  table.insertAdjacentElement('afterbegin',tbody);
-
-  //memoここまであってる
-
-
+  let count = 0;
   console.log(data.list);
-  for(let g1 of data.list.g1){
+    for(let g1 of data.list.g1){
 
 
-    console.log('開始時刻：'+g1.start_time);
-    let p1 = document.createElement('p');
-    let timeST = document.createElement('time');
-    timeST.setAttribute('datetime', g1.start_time); 
-    //timeST.textContent = formatJSTime(data.list.g1.start_time);
-    timeST.insertAdjacentElement('afterbegin',p);
+    count = count+1;
+    
+    let div = document.querySelector('div#result');
+    // let h = document.querySelector('button#btn');//ボタンの後ろを指定
+    // let d = document.createElement('div');//div#resultを作成したいけどresultタグの付け方がわからない
+    // h.insertAdjacentElement('beforeend', d);  // ボタンの後ろに配置
+    
 
 
-    console.log('終了時刻：'+g1.end_time);
-    let p2 = document.createElement('p');
-    let timeED = document.createElement('time');
-    timeST.setAttribute('datetime', g1.end_time); 
-    //timeST.textContent = formatJSTime(data.list.g1.start_time);
-    timeST.insertAdjacentElement('afterbegin',p);
+    let h2 = document.createElement('h2');
+    h2.textContent = '検索結果'+count+'件目';
+    div.insertAdjacentElement('beforeend',h2);
+    console.log(h2);
 
 
-    console.log('チャンネル：'+g1.service.name);
+    let pST = document.createElement('p');
+    pST.textContent = '開始時刻：'+g1.start_time;
+    h2.insertAdjacentElement('afterend',pST);
+    
+    let pED = document.createElement('p');
+    pED.textContent = '終了時刻：'+g1.end_time;
+    pST.insertAdjacentElement('beforeend',pED);
+
+    // console.log('開始時刻：'+g1.start_time);
+    // let p1 = document.createElement('p');
+    // let timeST = document.createElement('time');
+    // timeST.setAttribute('datetime', g1.start_time); 
+    // timeST.textContent = formatJSTime(g1.start_time);
+    // timeST.insertAdjacentElement('beforeend',p);
+
+
+    // console.log('終了時刻：'+g1.end_time);
+    // let p2 = document.createElement('p');
+    // let timeED = document.createElement('time');
+    // timeST.setAttribute('datetime', g1.end_time); 
+    // timeST.textContent = formatJSTime(g1.end_time);
+    // timeST.insertAdjacentElement('beforeend',p);
+
+
+    //以下表
+    let table = document.createElement('table');//table作成
+    h2.insertAdjacentElement('afterend',table);//table配置
+
+    let tbody = document.createElement('tbody');//tbody
+    table.insertAdjacentElement('beforeend',tbody);
+
+    // console.log('チャンネル：'+g1.service.name);
     let trCH = document.createElement('tr');
     let thCH = document.createElement('th');
     thCH.textContent = 'チャンネル';
     let tdCH = document.createElement('td');
     tdCH.textContent = g1.service.name;
-    trCH.insertAdjacentElement('afterbegin',timeST);
-    thCH.insertAdjacentElement('afterbegin',trCH);
-    tdCH.insertAdjacentElement('afterbegin',thCH);
+    tbody.insertAdjacentElement('beforeend',trCH);
+    trCH.insertAdjacentElement('beforeend',thCH);
+    trCH.insertAdjacentElement('beforeend',tdCH);
 
-    console.log('タイトル：'+g1.title);
+    // console.log('タイトル：'+g1.title);
     let trTI = document.createElement('tr');
     let thTI = document.createElement('th');
-    thCH.textContent = 'タイトル';
+    thTI.textContent = 'タイトル';
     let tdTI = document.createElement('td');
     tdTI.textContent = g1.title;
-    trTI.insertAdjacentElement('afterbegin',tdCH);
-    thTI.insertAdjacentElement('afterbegin',trTI);
-    tdTI.insertAdjacentElement('afterbegin',thTI);
+    tbody.insertAdjacentElement('beforeend',trTI);
+    trTI.insertAdjacentElement('beforeend',thTI);
+    trTI.insertAdjacentElement('beforeend',tdTI);
 
-    console.log('サブタイトル：'+g1.subtitle);
+    // console.log('サブタイトル：'+g1.subtitle);
     let trST = document.createElement('tr');
     let thST = document.createElement('th');
-    thCH.textContent = 'サブタイトル';
+    thST.textContent = 'サブタイトル';
     let tdST = document.createElement('td');
     tdST.textContent = g1.subtitle;
-    trST.insertAdjacentElement('afterbegin',tdTI);
-    thST.insertAdjacentElement('afterbegin',trST);
-    tdST.insertAdjacentElement('afterbegin',thST);
+    tbody.insertAdjacentElement('beforeend',trST);
+    trST.insertAdjacentElement('beforeend',thST);
+    trST.insertAdjacentElement('beforeend',tdST);
 
-    console.log('出演者：'+g1.act);
+    // console.log('出演者：'+g1.act);
     let trACT = document.createElement('tr');
     let thACT = document.createElement('th');
     thACT.textContent = '出演者';
     let tdACT = document.createElement('td');
     tdACT.textContent = g1.act;
-    trACT.insertAdjacentElement('afterbegin',tdACT);
-    thACT.insertAdjacentElement('afterbegin',trACT);
-    tdACT.insertAdjacentElement('afterbegin',thACT);
+    tbody.insertAdjacentElement('beforeend',trACT);
+    trACT.insertAdjacentElement('beforeend',thACT);
+    trACT.insertAdjacentElement('beforeend',tdACT);
 
-
+    // let img = document.createElement('img');
+    // img.src = 'https:' + g1.service.logo_m.url;
+    // img.alt = g1.service.name + " ロゴ";
+    // img.style.width = g1.service.logo_m.width + '10px'; // 幅指定
+    // img.style.height = g1.service.logo_m.height + '5px'; // 高さ指定
+    // h2.insertAdjacentElement('afterend', img);
+    //ロゴを入れたいけどうまくいかなかった
   }
 
 }
@@ -124,8 +136,8 @@ function printDom(data) {
 
 
 let b = document.querySelector('button#btn');
-b.addEventListener('click', channelIn);
-b.addEventListener('click', genreIn);
+// b.addEventListener('click', channelIn);
+// b.addEventListener('click', genreIn);
 b.addEventListener('click', sendRequest);
 
 
@@ -133,10 +145,27 @@ b.addEventListener('click', sendRequest);
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
 
+  let div = document.querySelector('div#result');
+
+  let removeTable = div.querySelectorAll('table');
+  let removeH2 = div.querySelectorAll('h2');
+  let removeP = div.querySelectorAll('p');
+  for (let h2 of removeH2) {
+    h2.remove();
+  }
+  for (let p of removeP) {
+    p.remove();
+  }
+  for (let table of removeTable) {
+    table.remove();
+  }
+
   let x = document.querySelector('select[name=channel]');
   let channel = x.value;
+  console.log('チャンネル'+channel);
   let y = document.querySelector('select[name=genre]');
   let genre = y.value;
+  console.log('ジャンル'+genre);
   // URL を設定
 	let preurl = 'https://www.nishita-lab.org/web-contents/jsons/nhk/';
 
@@ -158,10 +187,20 @@ function showResult(resp) {
     // サーバから送られてきたデータを出力
     let data = resp.data;
 
+    console.log("受信した data:", data);
+    console.log("data の型:", typeof data);
+
+    //デバッグ用
+    if (data === "null") {
+      console.error("サーバから 'null' が返されました。選択内容に対応するデータが存在しません。");
+      return;
+  }
+
     // data が文字列型なら，オブジェクトに変換する
     if (typeof data === 'string') {
         data = JSON.parse(data);
     }
+    console.log('変換'+data);
     printDom(data);
 }
 
