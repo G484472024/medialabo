@@ -111,13 +111,24 @@ a:hover{
 }
 
 div.contents{
-    margin: 0 auto 2em; /* 外側の余白（上下と中央配置） */
-    padding: 2em; /* 内側余白 */
+    margin: 0 auto 2em; 
+    padding: 2em;
     background-image: repeating-linear-gradient(
-        -45deg,           /* ストライプの角度 */
-        #ffd8f3 0,        /* ストライプの色（薄いグレー） */
-        #ffd8f3 1px,      /* ストライプの太さ（3pxの間隔） */
-        transparent 1px,  /* 透明部分 */
-        transparent 6px   /* 透明部分（3pxから6pxまで） */
+        -45deg,        
+        #ffd8f3 0,       
+        #ffd8f3 1px,    
+        transparent 1px, 
+        transparent 6px   
     );
+}
+.box2 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    background: #FFF;
+    border: solid 3px palevioletred;
+    border-radius: 10px;
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
 }
