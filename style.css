@@ -125,7 +125,7 @@ div.contents{
     padding: 0.5em 1em;
     margin: 2em 0;
     background: #FFF;
-    border: solid 3px palevioletred;
+    border: solid 3px #ffc3dd;
     border-radius: 10px;
 }
 .box2 p {
